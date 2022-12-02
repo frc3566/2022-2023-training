@@ -29,12 +29,12 @@ public class DriveSubsystem extends SubsystemBase {
     left2 = new WPI_TalonSRX(2);
     left2.follow(left1); // Makes this motor mirror left1
 
-    right1 = new WPI_TalonSRX(4);
+    right1 = new WPI_TalonSRX(3);
     right1.setInverted(true);
     // rightController = right1.getPIDController();
     // setControler(rightController);
 
-    right2 = new WPI_TalonSRX(5);
+    right2 = new WPI_TalonSRX(4);
     right2.follow(right1);
   }
 
