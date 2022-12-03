@@ -35,12 +35,21 @@ public class DriveWithJoystick extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double scaleConstant = 1.0;
-    // get y value as speed
-    double speed = JS.getRawAxis(1);
-    // get x value as "direction"
-    double leftPower = JS.getRawAxis(0) + scaleConstant * speed;
-    double rightPower = -1 * JS.getRawAxis(0) + scaleConstant * speed;
+    // double x = -JS.getRawAxis(1);
+    // double y = JS.getRawAxis(0);
+    // double leftPower = (y + x) ;
+    // double rightPower = -(y - x);
+    double x = JS.getRawAxis(0);
+    double y = - JS.getRawAxis(1);
+    double leftPower = y + x;
+    double rightPower = y - x;
+
+    //double scaleConstant = 1.0;
+    //// get y value as speed
+    //double speed = JS.getRawAxis(1);
+    //// get x value as "direction"
+    //double leftPower = JS.getRawAxis(0) + scaleConstant * speed;
+    //double rightPower = -1 * JS.getRawAxis(0) + scaleConstant * speed;
     drive.setPower(leftPower, rightPower);
   }
 

@@ -21,21 +21,23 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Creates a new ExampleSubsystem. */
   public DriveSubsystem() {
-    left1 = new WPI_TalonSRX(1);
+    left1 = new WPI_TalonSRX(9);
     left1.setInverted(false);
     // leftController = left1.getPIDController();
     // setControler(leftController);
 
-    left2 = new WPI_TalonSRX(2);
-    left2.follow(left1); // Makes this motor mirror left1
+    left2 = new WPI_TalonSRX(1);
+    left2.setInverted(false);
+    // left2.follow(left1); // Makes this motor mirror left1
 
     right1 = new WPI_TalonSRX(3);
     right1.setInverted(true);
     // rightController = right1.getPIDController();
     // setControler(rightController);
 
-    right2 = new WPI_TalonSRX(4);
-    right2.follow(right1);
+    right2 = new WPI_TalonSRX(2);
+    right2.setInverted(true);
+    // right2.follow(right1);
   }
 
   public void setPower(Double leftPower, Double rightPower) {
