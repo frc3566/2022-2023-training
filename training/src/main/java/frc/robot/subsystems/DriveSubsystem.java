@@ -8,16 +8,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-// import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class DriveSubsystem extends SubsystemBase {
 
   private CANSparkMax sparkLeft1, sparkLeft2, sparkLeft3;
-
   private CANSparkMax sparkRight1, sparkRight2, sparkRight3;
 
-  // private WPI_TalonSRX talonLeft1, talonLeft2;
-  // private WPI_TalonSRX talonRight1, talonRight2;
+  private WPI_TalonSRX talonLeft1, talonLeft2;
+  private WPI_TalonSRX talonRight1, talonRight2;
 
   /** Creates a new ExampleSubsystem. */
   public DriveSubsystem(String motorType) {
@@ -45,15 +44,15 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void setTalonSRX() {
-    // talonLeft1 = new WPI_TalonSRX(1);
-    // setTalon(talonLeft1, true);
-    // talonLeft2 = new WPI_TalonSRX(2);
-    // talonLeft2.follow(talonLeft1);
+    talonLeft1 = new WPI_TalonSRX(1);
+    talonLeft1.setInverted(false);
+    talonLeft2 = new WPI_TalonSRX(2);
+    talonLeft2.setInverted(false);
     
-    // talonRight1 = new WPI_TalonSRX(3);
-    // setTalon(talonRight1, true);
-    // talonRight2 = new WPI_TalonSRX(4);
-    // talonRight2.follow(talonRght1);
+    talonRight1 = new WPI_TalonSRX(3);
+    talonRight1.setInverted(false);
+    talonRight2 = new WPI_TalonSRX(4);
+    talonRight2.setInverted(true);
   }
 
   public void setSparkMaxPower(Double leftPower, Double rightPower) {
