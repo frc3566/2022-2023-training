@@ -26,7 +26,7 @@ public class DriveWithJoystick extends CommandBase {
       double x = JS.getRawAxis(0);
       double y = JS.getRawAxis(1);
 
-      driveSubsystem.setSparkMaxPower(x + y, x - y);
+      driveSubsystem.setSparkMaxPower(x - y, x + y);
   }
 
   @Override
