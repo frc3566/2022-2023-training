@@ -8,8 +8,8 @@ import frc.robot.subsystems.DriveSubsystem;
 public class DriveWithJoystick extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  private DriveSubsystem driveSubsystem;
   private Joystick JS;
+  private DriveSubsystem driveSubsystem;
 
   public DriveWithJoystick(Joystick JS, DriveSubsystem driveSubsystem) {
     addRequirements(driveSubsystem);
