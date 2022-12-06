@@ -55,7 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
     talonRight2.setInverted(true);
   }
 
-  public void setSparkMaxPower(Double leftPower, Double rightPower) {
+  public void setSparkMaxPower(double leftPower, double rightPower) {
     sparkLeft1.set(leftPower);
     sparkLeft2.set(leftPower);
     sparkLeft3.set(leftPower);
