@@ -42,6 +42,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Intakes object (in)
+    // TODO try changing button number to see if it works
     JoystickButton js1_b12 = new JoystickButton(js1, 12);
     js1_b12.whenHeld(intakeCommand);
   }
