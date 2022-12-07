@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.IntakeObject;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -20,20 +22,24 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class RobotContainer {
 
-  // The robot's subsystems and commands are defined here...
+  // Inputs
   public Joystick js1 = new Joystick(0);
   
+  // Subsystems
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+
+  // Commands
   private final DriveWithJoystick driveWithJoystick = new DriveWithJoystick(js1, driveSubsystem);
+  private final IntakeObject intakeObject = new IntakeObject(intakeSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     driveSubsystem.setDefaultCommand(driveWithJoystick);
-    // Testing if I can push
+    intakeSubsystem.setDefaultCommand(intakeObject);
   }
-
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
