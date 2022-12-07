@@ -5,25 +5,32 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.IntakeSubsystem;
+// import frc.robot.subsystems.IndexerSubsystem;
+// TODO also pass in indexer subsystem and set indexer power to 0.9
+// TODO add targetBallCount
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class IntakeObject extends CommandBase {
+public class IntakeCommand extends CommandBase {
 
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-  /**
-   * Creates intake object command.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public IntakeObject(IntakeSubsystem subsystem) {
+  // subsystems
+  IntakeSubsystem intake;
+
+  // state variables
+  int ballCount;
+
+  public IntakeCommand(IntakeSubsystem intakeSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements();
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    intake.extendIntake();
+    intake.setIntake(0.9);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -31,11 +38,14 @@ public class IntakeObject extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    intake.setIntake(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
   }
+  
 }
