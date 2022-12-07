@@ -12,7 +12,7 @@ public class IntakeSubsystem extends SubsystemBase {
 	// components
 	private CANSparkMax intakeMotor = new CANSparkMax(10, MotorType.kBrushless);
 	Solenoid leftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2);
-  Solenoid rightSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 4);
+  	Solenoid rightSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 4);
 
 	// state variables
 	private boolean isExtended;
