@@ -56,4 +56,38 @@ public class RobotContainer {
     // return m_autoCommand;
     return null;
   }
+
+  /* button mapping:
+    thrustmaster:
+      stick:
+        trigger:1
+        front:
+          3   4
+            2
+      base:
+        left:
+          5 6 7
+          10 9 8
+        right:
+          13 12 11
+          14 15 16
+    
+    logitech:
+      stick:
+        trigger: 1
+        left: 2
+        front:
+          5     6
+            3 4
+      base:
+        7 8
+        9 10
+        11 12
+    POV buttons:
+          0
+      315   45
+    270       90
+      225   135
+         180
+  */
 }
