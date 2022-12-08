@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.DriveSubsystem;
@@ -45,12 +46,19 @@ public class RobotContainer {
     // Intake on press (toggle)
     JoystickButton js1_b3 = new JoystickButton(js1, 3);
     js1_b3.toggleWhenPressed(intakeCommand, true);
+    // ^ This doesn't work?
     // Intake when held (in)
     JoystickButton js1_b12 = new JoystickButton(js1, 12);
     js1_b12.whenHeld(new StartEndCommand(() -> intakeSubsystem.setIntake(0.7), () -> intakeSubsystem.setIntake(0)));
     // Intake when held (out)
     JoystickButton js1_b15 = new JoystickButton(js1, 15);
     js1_b15.whenHeld(new StartEndCommand(() -> intakeSubsystem.setIntake(-0.7), () -> intakeSubsystem.setIntake(0)));
+    // Extend intake
+    JoystickButton j1_b7 = new JoystickButton(js1, 6);
+    j1_b7.whenPressed(new InstantCommand(() -> intakeSubsystem.extendIntake()));
+    // Contract intake
+    JoystickButton j1_b8 = new JoystickButton(js1, 9);
+    j1_b8.whenPressed(new InstantCommand(() -> intakeSubsystem.contractIntake()));
   }
 
   /**
