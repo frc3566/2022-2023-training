@@ -6,6 +6,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexerSubsystem extends SubsystemBase {
@@ -14,6 +15,10 @@ public class IndexerSubsystem extends SubsystemBase {
     private RelativeEncoder indexerEncoder;
 
     private SparkMaxPIDController indexerPID;
+
+    private DigitalInput entranceIR = new DigitalInput(0);
+    private DigitalInput lowIR = new DigitalInput(1);
+    private DigitalInput highIR = new DigitalInput(2);
 
     private int ballCount;
 
@@ -37,8 +42,26 @@ public class IndexerSubsystem extends SubsystemBase {
         indexer.set(power);
     }
 
+    public boolean getEntranceIR() {
+        return !entranceIR.get();
+    }
+
+    public boolean getLowIR() {
+        return !lowIR.get();
+    }
+
+    public boolean getHighIR() {
+        return !highIR.get();
+    }
+
     public int getBallCount() {
         return ballCount;
+    }
+
+    public void setBallCount(int count) {
+        count = Math.max(count, 0);
+        count = Math.min(count, 2);
+        ballCount = count;
     }
 
     public void disable() {
