@@ -1,10 +1,10 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -41,7 +41,17 @@ public class IndexerSubsystem extends SubsystemBase {
     public void setIndexer(double power) {
         indexer.set(power);
     }
-
+    
+    public void setBallCount(int count) {
+        count = Math.max(count, 0);
+        count = Math.min(count, 2);
+        ballCount = count;
+    }
+    
+    public int getBallCount() {
+        return ballCount;
+    }
+    
     public boolean getEntranceIR() {
         return !entranceIR.get();
     }
@@ -53,17 +63,7 @@ public class IndexerSubsystem extends SubsystemBase {
     public boolean getHighIR() {
         return !highIR.get();
     }
-
-    public int getBallCount() {
-        return ballCount;
-    }
-
-    public void setBallCount(int count) {
-        count = Math.max(count, 0);
-        count = Math.min(count, 2);
-        ballCount = count;
-    }
-
+    
     public void disable() {
         indexer.set(0);
     }  
