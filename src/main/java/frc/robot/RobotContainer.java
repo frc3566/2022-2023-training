@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -41,10 +42,15 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Intakes object (in)
-    // TODO try changing button number to see if it works
+    // Intake on press (toggle)
+    JoystickButton js1_b3 = new JoystickButton(js1, 3);
+    js1_b3.toggleWhenPressed(intakeCommand, true);
+    // Intake when held (in)
     JoystickButton js1_b12 = new JoystickButton(js1, 12);
-    js1_b12.whenHeld(intakeCommand);
+    js1_b12.whenHeld(new StartEndCommand(() -> intakeSubsystem.setIntake(0.7), () -> intakeSubsystem.setIntake(0)));
+    // Intake when held (out)
+    JoystickButton js1_b15 = new JoystickButton(js1, 15);
+    js1_b15.whenHeld(new StartEndCommand(() -> intakeSubsystem.setIntake(-0.7), () -> intakeSubsystem.setIntake(0)));
   }
 
   /**
