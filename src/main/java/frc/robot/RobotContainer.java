@@ -22,7 +22,7 @@ public class RobotContainer {
   public Joystick js1 = new Joystick(0);
   
   // Subsystems
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem("SparkMax");
+  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   // Commands

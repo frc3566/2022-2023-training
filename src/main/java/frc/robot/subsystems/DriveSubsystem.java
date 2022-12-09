@@ -4,11 +4,11 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -19,11 +19,12 @@ public class DriveSubsystem extends SubsystemBase {
   private WPI_TalonSRX talonRight1, talonRight2;
 
   /** Creates a new ExampleSubsystem. */
-  public DriveSubsystem(String motorType) {
-    if (motorType.equals("SparkMax")) {
-      setSparkMax();
-    } else if (motorType.equals("TalonSRX")) {
-      setTalonSRX();
+  public DriveSubsystem() {
+    switch (Constants.MOTOR) {
+      case SparkMax:
+        setSparkMax();
+      case TalonSRX:
+        setTalonSRX();
     }
   }
 
@@ -55,7 +56,7 @@ public class DriveSubsystem extends SubsystemBase {
     talonRight2.setInverted(true);
   }
 
-  public void setSparkMaxPower(double leftPower, double rightPower) {
+  public void setPower(double leftPower, double rightPower) {
     sparkLeft1.set(leftPower);
     sparkLeft2.set(leftPower);
     sparkLeft3.set(leftPower);
