@@ -51,6 +51,14 @@ public class IntakeSubsystem extends SubsystemBase {
 		isExtended = false; // update state
 	}
 
+	public void setIsExtended(Boolean state) {
+		isExtended = state;
+	}
+
+	public Boolean getIsExtended() {
+		return isExtended;
+	}
+
 	// TODO is DisabledCommand depracated or something? Why does the import not work
 
   @Override
