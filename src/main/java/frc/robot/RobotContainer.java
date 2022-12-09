@@ -48,18 +48,18 @@ public class RobotContainer {
     JoystickButton js1_b15 = new JoystickButton(js1, 15);
     js1_b15.whenHeld(new StartEndCommand(() -> intakeSubsystem.setIntake(-0.7), () -> intakeSubsystem.setIntake(0)));
     // Extend intake
-    JoystickButton j1_b7 = new JoystickButton(js1, 6);
-    j1_b7.whenPressed(new InstantCommand(() -> intakeSubsystem.extendIntake()));
+    JoystickButton js1_b7 = new JoystickButton(js1, 6);
+    js1_b7.whenPressed(new InstantCommand(() -> intakeSubsystem.extendIntake()));
     // Contract intake
-    JoystickButton j1_b8 = new JoystickButton(js1, 9);
-    j1_b8.whenPressed(new InstantCommand(() -> intakeSubsystem.contractIntake()));
+    JoystickButton js1_b8 = new JoystickButton(js1, 9);
+    js1_b8.whenPressed(new InstantCommand(() -> intakeSubsystem.contractIntake()));
 
     // Indexer up
-    JoystickButton j1_b11 = new JoystickButton(js1, 11);
-    j1_b11.whenHeld(new StartEndCommand(() -> indexerSubsystem.setIndexer(0.7), () -> indexerSubsystem.setIndexer(0), indexerSubsystem), true);
+    JoystickButton js1_b11 = new JoystickButton(js1, 11);
+    js1_b11.whenHeld(new StartEndCommand(() -> indexerSubsystem.setIndexer(0.7), () -> indexerSubsystem.setIndexer(0), indexerSubsystem), true);
     // Indexer down
-    JoystickButton j1_b16 = new JoystickButton(js1, 16);
-    j1_b16.whenHeld(new StartEndCommand(() -> indexerSubsystem.setIndexer(-0.7), () -> indexerSubsystem.setIndexer(0), indexerSubsystem), true);
+    JoystickButton js1_b16 = new JoystickButton(js1, 16);
+    js1_b16.whenHeld(new StartEndCommand(() -> indexerSubsystem.setIndexer(-0.7), () -> indexerSubsystem.setIndexer(0), indexerSubsystem), true);
   }
 
   public Command getAutonomousCommand() {
