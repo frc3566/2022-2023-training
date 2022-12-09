@@ -8,20 +8,32 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.DriveWithJoystick;
+import frc.robot.commands.IntakeCommand;
 
 public class RobotContainer {
-  private Joystick JS = new Joystick(0);
 
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem("SparkMax");
+  // Inputs
+  public Joystick js1 = new Joystick(0);
   
-  private final DriveWithJoystick driveWithJoystick = new DriveWithJoystick(JS, driveSubsystem);
+  // Subsystems
+  private final DriveSubsystem driveSubsystem = new DriveSubsystem("SparkMax");
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
+  // Commands
+  private final DriveWithJoystick driveWithJoystick = new DriveWithJoystick(js1, driveSubsystem);
+  private final IntakeCommand intakeCommand = new IntakeCommand(intakeSubsystem);
+
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    driveSubsystem.setDefaultCommand(driveWithJoystick);
+    // Configure the button bindings
     configureButtonBindings();
+    driveSubsystem.setDefaultCommand(driveWithJoystick);
   }
 
   /**
@@ -30,7 +42,24 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    // Intake on press (toggle)
+    JoystickButton js1_b3 = new JoystickButton(js1, 3);
+    js1_b3.toggleWhenPressed(intakeCommand, true);
+    // ^ This doesn't work?
+    // Intake when held (in)
+    JoystickButton js1_b12 = new JoystickButton(js1, 12);
+    js1_b12.whenHeld(new StartEndCommand(() -> intakeSubsystem.setIntake(0.7), () -> intakeSubsystem.setIntake(0)));
+    // Intake when held (out)
+    JoystickButton js1_b15 = new JoystickButton(js1, 15);
+    js1_b15.whenHeld(new StartEndCommand(() -> intakeSubsystem.setIntake(-0.7), () -> intakeSubsystem.setIntake(0)));
+    // Extend intake
+    JoystickButton j1_b7 = new JoystickButton(js1, 6);
+    j1_b7.whenPressed(new InstantCommand(() -> intakeSubsystem.extendIntake()));
+    // Contract intake
+    JoystickButton j1_b8 = new JoystickButton(js1, 9);
+    j1_b8.whenPressed(new InstantCommand(() -> intakeSubsystem.contractIntake()));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -42,4 +71,38 @@ public class RobotContainer {
     // return m_autoCommand;
     return null;
   }
+
+  /* button mapping:
+    thrustmaster:
+      stick:
+        trigger:1
+        front:
+          3   4
+            2
+      base:
+        left:
+          5 6 7
+          10 9 8
+        right:
+          13 12 11
+          14 15 16
+    
+    logitech:
+      stick:
+        trigger: 1
+        left: 2
+        front:
+          5     6
+            3 4
+      base:
+        7 8
+        9 10
+        11 12
+    POV buttons:
+          0
+      315   45
+    270       90
+      225   135
+         180
+  */
 }
