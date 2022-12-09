@@ -1,9 +1,9 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.DriveSubsystem;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
 
 public class DriveWithJoystick extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -25,7 +25,7 @@ public class DriveWithJoystick extends CommandBase {
   public void execute() {
     double x = JS.getRawAxis(0);
     double y = -JS.getRawAxis(1);
-    driveSubsystem.setPower(x + y, x - y);
+    driveSubsystem.setPower(y - x, y + x);
   }
 
   @Override
