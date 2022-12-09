@@ -48,17 +48,17 @@ public class IndexerSubsystem extends SubsystemBase {
 	public void setIndexer(double power) {
 		indexer.set(power);
 	}
-	
+
 	public void setBallCount(int count) {
 		count = Math.max(count, 0);
 		count = Math.min(count, 2);
 		ballCount = count;
 	}
-	
+
 	public int getBallCount() {
 		return ballCount;
 	}
-	
+
 	public boolean getEntranceIR() {
 		return !entranceIR.get();
 	}

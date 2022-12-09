@@ -17,7 +17,7 @@ public class IntakeSubsystem extends SubsystemBase {
 	// state variables
 	private boolean isExtended;
 	private int ballCount;
-  
+
 	public IntakeSubsystem() {
 		intakeMotor.setInverted(false);
 		// sets maximum rate at which the motor controller’s output is allowed to change
