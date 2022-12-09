@@ -11,7 +11,6 @@ import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class IntakeCommand extends CommandBase {
-
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
   // subsystems

@@ -12,20 +12,20 @@ public class IntakeSubsystem extends SubsystemBase {
 	// components
 	private CANSparkMax intakeMotor = new CANSparkMax(10, MotorType.kBrushless);
 	Solenoid leftSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 2);
-  	Solenoid rightSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 4);
+	Solenoid rightSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 4);
 
 	// state variables
 	private boolean isExtended;
 	private int ballCount;
   
-  public IntakeSubsystem() {
+	public IntakeSubsystem() {
 		intakeMotor.setInverted(false);
 		// sets maximum rate at which the motor controller’s output is allowed to change
 		intakeMotor.setClosedLoopRampRate(0.3); 
 		// when motor stops, brake will not be activated. keep rolling until momentum runs out
 		intakeMotor.setIdleMode(IdleMode.kCoast); 
 		isExtended = false;
-  }
+	}
 
 	public void setIntake(double power) {
 		intakeMotor.set(power);
@@ -53,13 +53,13 @@ public class IntakeSubsystem extends SubsystemBase {
 
 	// TODO is DisabledCommand depracated or something? Why does the import not work
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
+	@Override
+	public void periodic() {
+	// This method will be called once per scheduler run
+	}
 
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
-  }
+	@Override
+	public void simulationPeriodic() {
+	// This method will be called once per scheduler run during simulation
+	}
 }
