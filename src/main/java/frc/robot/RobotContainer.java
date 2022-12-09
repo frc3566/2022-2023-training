@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.DriveWithJoystick;
 import frc.robot.commands.IntakeCommand;
@@ -24,6 +25,7 @@ public class RobotContainer {
   // Subsystems
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final IndexerSubsystem indexerSubsystem = new IndexerSubsystem();
 
   // Commands
   private final DriveWithJoystick driveWithJoystick = new DriveWithJoystick(js1, driveSubsystem);
@@ -51,6 +53,13 @@ public class RobotContainer {
     // Contract intake
     JoystickButton j1_b8 = new JoystickButton(js1, 9);
     j1_b8.whenPressed(new InstantCommand(() -> intakeSubsystem.contractIntake()));
+
+    // Indexer up
+    JoystickButton j1_b11 = new JoystickButton(js1, 11);
+    j1_b11.whenHeld(new StartEndCommand(() -> indexerSubsystem.setIndexer(0.7), () -> indexerSubsystem.setIndexer(0), indexerSubsystem), true);
+    // Indexer down
+    JoystickButton j1_b16 = new JoystickButton(js1, 16);
+    j1_b16.whenHeld(new StartEndCommand(() -> indexerSubsystem.setIndexer(-0.7), () -> indexerSubsystem.setIndexer(0), indexerSubsystem), true);
   }
 
   public Command getAutonomousCommand() {
