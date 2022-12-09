@@ -7,6 +7,9 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IndexerSubsystem extends SubsystemBase {
@@ -19,6 +22,10 @@ public class IndexerSubsystem extends SubsystemBase {
     private DigitalInput entranceIR = new DigitalInput(0);
     private DigitalInput lowIR = new DigitalInput(1);
     private DigitalInput highIR = new DigitalInput(2);
+
+    private NetworkTableInstance instance = NetworkTableInstance.getDefault();
+    private NetworkTable networkTable = instance.getTable("LiveWindow/IndexerSubsystem");
+    private NetworkTableEntry ballCountEntry = networkTable.getEntry("ball_count");
 
     private int ballCount;
 
@@ -63,14 +70,14 @@ public class IndexerSubsystem extends SubsystemBase {
     public boolean getHighIR() {
         return !highIR.get();
     }
-    
+
     public void disable() {
         indexer.set(0);
     }  
 
     @Override
     public void periodic() {
-      
+        ballCountEntry.setDouble(ballCount);
     }
   
     @Override
